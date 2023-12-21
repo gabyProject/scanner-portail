@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import {LoginServiceService} from './login-service.service'
+import { LocalStorageService } from './local-storage.service';
+import { Ilogin } from './Ilogin';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +11,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'scanner-front';
+  
+  current_Error : String | undefined
+
+  
+
+  constructor(){
+
+  }
+
+
+
+
 }

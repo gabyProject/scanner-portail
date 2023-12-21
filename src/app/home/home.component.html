@@ -1,0 +1,78 @@
+<app-navigationbar></app-navigationbar>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+      <p class="h5">Ajout d'un projet</p>
+      <form #loginForm="ngForm" (ngSubmit)="addNewProject(loginForm.value)">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Nom du projet</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nom du projet" name="projectname" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Adresse IP</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Exemple 192.168.1.12" name="ipaddress" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Domaine</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Exemple https://toto.com" name="domaine" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+   
+      <p class="h5">Liste des projets</p>
+      <div *ngIf="this.current_Error!=null" class="alert alert-danger" role="alert">
+        {{this.current_Error}}
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Ip</th>
+            <th scope="col">Domaine</th>
+            <th scope="col">Start</th>
+          </tr>
+        </thead>
+       
+        <tbody *ngFor="let project of response">
+            <tr>
+              <th scope="row">{{ project.id }}</th>
+              <td>{{project.projectname}}</td>
+              <td>{{project.ipaddress}}</td>
+              <td>{{project.domaine}}</td>
+              <td><button type="button" class="btn btn-success" (click)="getname(project.id)" data-bs-toggle="modal" data-bs-target="#informationModal">Start scan</button></td>
+            </tr>
+        </tbody>
+
+        
+      </table>
+  </div>
+  <div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Your Scann is added</h5>
+          
+        </div>
+        <div class="modal-body">
+          <p>Your scan is added when the scan will be finished you will get a message.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-close" data-bs-dismiss="modal">
+            
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
